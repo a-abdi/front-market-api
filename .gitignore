@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 /dist
+.Trash-1000
 
 
 # local env files
