@@ -8,26 +8,34 @@
                 <input id="password" name="password" class="px-2 text-gray-600 w-full border border-gray-300 rounded mb-2 py-1 focus:ring-2 focus:ring-blue-300 focus:outline-none" type="password" v-model="form.password">
                 <button type="submit" class="w-full rounded my-2 py-1 bg-blue-300 hover:bg-blue-500 focus:bg-blue-600 active:bg-blue-700 focus:outline-none tracking-wider text-gray-700">Register</button>
             </form>
-        <div>
-            <p class="text-center text-red-700 text-sm">
-                {{ result }}
-            </p>
-        </div>
+            <message-error v-if="error" class="text-center">
+                {{ error.data.err.msg }}
+            </message-error> 
+
+            <message-success v-if="response" class="text-center">
+                success register
+            </message-success>
         </div>
     </div>
 </template>
 
 <script>
 import useAxios from 'vue3-use-axios'
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
+import MessageError from '@/components/MessageError'
+import MessageSuccess from '@/components/MessageSuccess'
 
 
 export default {
     name: "Register",
 
+    components: {
+        MessageSuccess,
+        MessageError,
+    },
+
     setup () {
         const { response, error, loading, exec } = useAxios()
-        let result = ref(null)
         const form = reactive(
             {
                 email: null,
@@ -47,11 +55,11 @@ export default {
                 }
             })
             
-            result.value = await error.value ? await error.value.data.err.msg : await response.value
         }
 
         return {
-            result,
+            error,
+            response,
             form,
             loading,
             register
