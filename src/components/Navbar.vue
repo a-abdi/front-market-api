@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-screen w-full">
         <div class="px-2 py-2 flex items-center bg-gray-100" id="nav">
             <router-link class="px-2 pb-1" to="/">
             <svg class="h-5 w-5 inline-flex" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,6 +12,6 @@
             <router-link class="px-2" to="/login">Login</router-link>
             </div>
         </div>
-        <router-view />
+        <router-view class="h-5/6" />
     </div>
 </template>

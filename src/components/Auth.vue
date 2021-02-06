@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center justify-center h-screen w-full">
+    <div class="flex items-center justify-center">
         <div class="p-4 w-11/12 sm:w-9/12 md:w-7/12 lg:w-5/12 xl:w-4/12 2xl:w-2/12 shadow-lg border border-gray-200 rounded-lg bg-white">
             <form @submit.prevent="register">
                 <label class="text-gray-600 text-sm my-2" for="email">Email</label>
