@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="grid grid-cols-12">
-            <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 2xl:col-span-2 p-2 sm:p-4 md:p-6 shadow-2xl"
+            <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 2xl:col-span-2 pb-10 px-2 sm:p-4 md:p-6 shadow-2xl"
               v-for="product in products" :key="product.id">
               <div class="">
                 <img :src="product.url" :alt="product.name">
