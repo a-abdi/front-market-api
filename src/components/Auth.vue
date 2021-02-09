@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center mt-28">
         <div class="p-4 w-11/12 sm:w-9/12 md:w-7/12 lg:w-5/12 xl:w-4/12 2xl:w-2/12 shadow-lg border border-gray-200 rounded-lg bg-white">
             <form @submit.prevent="register">
                 <label class="text-gray-600 text-sm my-2" for="email">Email</label>
@@ -12,26 +12,27 @@
             <message-error v-if="error" class="text-center">
                 {{ error.data.err.msg }}
             </message-error> 
-
-            <message-success v-if="response" class="text-center">
-                success
-            </message-success>
         </div>
     </div>
 </template>
 
 <script>
 import useAxios from 'vue3-use-axios'
+import router from '@/router'
 import { reactive } from 'vue'
 import MessageError from '@/components/MessageError'
-import MessageSuccess from '@/components/MessageSuccess'
-
+import store from '@/store'
 
 export default {
 
     components: {
-        MessageSuccess,
         MessageError,
+    },
+    methods: {
+        push() {
+            alert('push')
+            this.$router.push('/')
+        }
     },
 
     props: {
@@ -59,11 +60,16 @@ export default {
                 }
             })
             
+            if(!error.value) {
+                // console.log(response.value.data)
+                store.commit('setUserData', response.value.data)
+                router.push('/')
+            }
+            
         }
 
         return {
             error,
-            response,
             form,
             loading,
             register
