@@ -3,25 +3,17 @@ import Home from "@/views/Home.vue";
 import Profile from "@/views/Profile.vue";
 import Register from "@/views/Register.vue";
 import Login from "@/views/Login.vue";
+import Product from "@/views/Product.vue";
+import NotFound from "@/views/NotFound.vue";
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    meta: {
-      auth: true
-    },
-    component: Profile,
-  },
-  {
-    path: "/register",
-    name: "Register",
-    component: Register,
+  { path: "/", name: "Home", component: Home, },
+  { path: "/product/:id", name: "Product", component: Product, },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+  { path: "/profile", name: "Profile", component: Profile, meta: { auth: true } },
+
+  { 
+    path: "/register", name: "Register", component: Register,
     beforeEnter: ( to, from, next ) => {
       const logedIn = localStorage.getItem('user');
       if(logedIn) {
@@ -31,7 +23,7 @@ const routes = [
       }
     }
   },
-  {
+  { 
     path: "/login",
     name: "Login",
     component: Login,
