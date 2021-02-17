@@ -1,6 +1,6 @@
 <template>
-    <div v-if="product" class="mx-0.5 sm:mx-2 md:mx-4 lg:mx-8 sm:px-2 md:px-4 lg:px-8 my-8 pb-2">
-        <div class="grid grid-cols-12">
+    <div class="mx-0.5 sm:mx-2 md:mx-4 lg:mx-8 sm:px-2 md:px-4 lg:px-8 my-8 pb-2">
+        <div v-if="product" class="grid grid-cols-12">
             <div class="col-span-full sm:col-span-3">
                 <img :src="product.url" alt="">
             </div>
@@ -17,8 +17,8 @@
                     <button @click="addToCart" class="w-full text-sm text-gray-600 sm:px-8 py-2 rounded bg-blue-200 hover:bg-blue-300 focus:bg-blue-400 active:bg-blue-500 focus:outline-none"> add to cart </button>
                 </div>
             {{ error }}
-            </div>
             {{ order }}
+            </div>
         </div>
     </div>
 </template>
@@ -30,7 +30,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
 import store from '@/store'
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
 
@@ -43,33 +43,33 @@ export default {
 
         onMounted(async () => {
             await exec({
-                url: 'http://192.168.43.83:91/api/v1/product/'+ productId,
+                url: 'http://192.168.43.83:88/api/v1/product/'+ productId,
                 method: 'get',
             })
 
             if(!response.value.data.id) {
                 router.push({ name: 'NotFound' })
             }
-
             product.value = response.value.data
         })
-            const token = store.getters.isLoged.token
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-        const addToCart =async () => {
+        const addToCart = async () => {
+            const token = store.getters.isLoged.token
             const userId = store.getters.isLoged.account_id
+
             console.log(token)
-            // axios.defaults.headers.common['Authorization'] = token
+            // store.dispatch('order', { account_id: userId, product_id: productId })
+            
             await exec({
-                url: 'http://192.168.43.83:91/api/v1/order',
+                url: 'http://192.168.43.83:88/api/v1/order',
                 method: 'post',
                 data: {
                     account_id: userId,
                     product_id: productId
+                },
+                headers: {
+                    'Authorization': `Bearer ${token}` 
                 }
-                // headers: {
-                //     'Authorization': `Bearer ${token}` 
-                // }
             })
             order.value = response.value
         }

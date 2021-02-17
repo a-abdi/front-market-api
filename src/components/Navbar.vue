@@ -32,7 +32,14 @@
                                 profile 
                             </router-link>
                         </li>
-                        <li @click="logout" class="py-1.5 pl-4 pr-6 hover:bg-gray-100 cursor-pointer"> logout </li>
+                        <li class="py-1.5 hover:bg-gray-100" @click="showInfo = false">
+                            <router-link class=" pl-4 pr-6" to="/order">
+                                order 
+                            </router-link>
+                        </li>
+                        <li @click="logout" class="py-1.5 pl-4 pr-6 hover:bg-gray-100 cursor-pointer">
+                            logout 
+                        </li>
                     </ul>
                 </div>
             </div>

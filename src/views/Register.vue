@@ -1,5 +1,5 @@
 <template>
-    <auth url="http://192.168.43.83:91/api/v1/account">
+    <auth url="/account">
         Register
     </auth>
 </template>

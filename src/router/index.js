@@ -4,6 +4,7 @@ import Profile from "@/views/Profile.vue";
 import Register from "@/views/Register.vue";
 import Login from "@/views/Login.vue";
 import Product from "@/views/Product.vue";
+import Order from "@/views/Order.vue";
 import NotFound from "@/views/NotFound.vue";
 
 const routes = [
@@ -11,6 +12,7 @@ const routes = [
   { path: "/product/:id", name: "Product", component: Product, },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   { path: "/profile", name: "Profile", component: Profile, meta: { auth: true } },
+  { path: "/order", name: "Order", component: Order, meta: { auth: true } },
 
   { 
     path: "/register", name: "Register", component: Register,

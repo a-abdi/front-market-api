@@ -7,14 +7,12 @@
             <div class="cursor-pointer" @click="productShow(product.id)">
               <img :src="product.url" :alt="product.name">
             </div>
-
             <div class="h-10 cursor-pointer" @click="productShow(product.id)">
               <p class="truncate text-base text-gray-600 leading-6 font-serif antialiased semibold tracking-wide py-2"> {{ product.name }} </p>
             </div>
-
             <div class="text-center">
               <span class="text-red-600 my-2 font-medium"> ${{ formatPrice(product.price) }} </span>
-            </div>
+            </div> 
           </div>
         </div>
     </div>
@@ -37,7 +35,7 @@ export default {
 
     onMounted(async () => {
       await exec({
-        url: 'http://192.168.43.83:91/api/v1/product',
+        url: 'http://192.168.43.83:88/api/v1/product',
         method: 'get'
       })
       products.value = response.value.data.product_list
